@@ -1,9 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 
 @Entity('Task')
-export class Team extends BaseEntity {
+export class Task extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  title: string;
 
   @Column({ length: 100 })
   description: string;
@@ -17,9 +20,9 @@ export class Team extends BaseEntity {
   @Column('tinyint')
   status: boolean;
 
-  @Column({ length: 100, nullable: true })
-  createdAt: string;
+  @Column({ nullable: true, default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 
-  @Column({ length: 100, nullable: true })
-  updatedAt: string;
+  @Column({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
 }
